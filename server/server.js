@@ -2,13 +2,17 @@ const express = require('express');
 const app = express();
 
 const PORT = process.env.PORT || 5000;
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
+const foodRouter = require('./routes/food.router');
+
+const databaseUrl = require('./modules/database.connection');
+
+app.use(bodyParser.json());
 app.use(express.static('server/public'));
 
-app.get('/food', (req, res) => {
-    console.log('GET: /food');
-    res.send({name: 'pasta', deliciousness_rating: 9, is_hot: true});
-});
+app.use('/food', foodRouter);
 
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);

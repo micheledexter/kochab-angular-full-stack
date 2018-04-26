@@ -1,17 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css" />
     <script src="./vendors/angular.js"></script>
     <script src="./scripts/client.js"></script>
     <title>Angular Full Stack</title>
 </head>
-<body ng-app="FoodApp" ng-controller="FoodController as vm">
-    <h1>Angular Full Stack</h1>
-    <input ng-model="vm.food" />
-    {{vm.food}}
+
+<body>
+    <main ng-app="FoodApp" ng-controller="FoodController as vm">
+        <section class="container">
+            <h1>Angular Full Stack</h1>
+            <h2>Add new food</h2>
+            <!-- <input ng-model="vm.food" /> {{vm.food}} -->
+            <form class="col-md-12">
+                <div class="form-group col-sm-4">
+                    <label for="name">Food Name</label>
+                    <input type="text" name="name" class="form-control" ng-model="vm.newFood.name" placeholder="( ie: 'taco' )" />
+                </div>
+                <div class="form-group col-sm-4">
+                    <label for="deliciousness_rating">Deliciousness Rating</label>
+                    <input type="number" name="deliciousness_rating" class="form-control" ng-model="vm.newFood.deliciousness_rating" min="1"
+                        max="10" placeholder="( 1-10 )" />
+                </div>
+                <div class="form-group col-sm-4">
+                    <label for="is_hot">Is it hot?</label>
+                    <input type="checkbox" name="is_hot" class="form-control" ng-model="vm.newFood.is_hot" />
+                </div>
+                <div class="form-group col-sm-4">
+                    <button ng-click="vm.createFood(vm.newFood)">Submit</button>
+                </div>
+            </form>
+        </section>
+        <section class="container">
+            <h3>Food List</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Deliciousness Rating</th>
+                        <th scope="col">Is it hot?</th>
+                        <th scope="col">Delete</th>
+                        <th scope="col">Save</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="food in vm.foods" id="{{food._id}}">
+                        <td>
+                            <input type="text" ng-model="food.name">
+                        </td>
+                        <td>
+                            <input type="number" min="1" max="10" ng-model="food.deliciousness_rating">
+                        </td>
+                        <td>
+                            <input type="checkbox" ng-model="food.is_hot">
+                        </td>
+                        <td>
+                            <button ng-click="vm.deleteFood(food)">Delete</button>
+                        </td>
+                        <td>
+                            <button ng-click="vm.saveFood(food)">Save</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
 </body>
+
 </html>
