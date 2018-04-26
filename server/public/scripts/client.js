@@ -1,4 +1,4 @@
-console.log('js');
+console.log('client.js has been loaded');
 
 var app = angular.module('FoodApp', []);
 

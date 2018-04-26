@@ -9,7 +9,9 @@
     <script src="./scripts/client.js"></script>
     <title>Angular Full Stack</title>
 </head>
-<body>
+<body ng-app="FoodApp" ng-controller="FoodController as vm">
     <h1>Angular Full Stack</h1>
+    <input ng-model="vm.food" />
+    {{vm.food}}
 </body>
 </html>
