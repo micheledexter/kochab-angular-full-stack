@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="styles/style.css" />
     <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="styles/style.css" />
     <script src="./vendors/angular.js"></script>
     <script src="./scripts/client.js"></script>
     <title>Angular Full Stack</title>
@@ -18,22 +18,22 @@
             <h1>Angular Full Stack</h1>
             <h2>Add new food</h2>
             <!-- <input ng-model="vm.food" /> {{vm.food}} -->
-            <form class="col-md-12">
+            <form ng-submit="submit()" class="col-md-12">
                 <div class="form-group col-sm-4">
                     <label for="name">Food Name</label>
-                    <input type="text" name="name" class="form-control" ng-model="vm.newFood.name" placeholder="( ie: 'taco' )" />
+                    <input type="text" name="name" class="form-control" ng-model="vm.newFood.name" placeholder="( ie: 'taco' )" required="required"/>
                 </div>
                 <div class="form-group col-sm-4">
                     <label for="deliciousness_rating">Deliciousness Rating</label>
                     <input type="number" name="deliciousness_rating" class="form-control" ng-model="vm.newFood.deliciousness_rating" min="1"
-                        max="10" placeholder="( 1-10 )" />
+                        max="10" placeholder="( 1-10 )" required="required"/>
                 </div>
                 <div class="form-group col-sm-4">
                     <label for="is_hot">Is it hot?</label>
                     <input type="checkbox" name="is_hot" class="form-control" ng-model="vm.newFood.is_hot" />
                 </div>
                 <div class="form-group col-sm-4">
-                    <button ng-click="vm.createFood(vm.newFood)">Submit</button>
+                    <button type="submit" ng-click="vm.createFood(vm.newFood)">Submit</button>
                 </div>
             </form>
         </section>
@@ -50,7 +50,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="food in vm.foods" id="{{food._id}}">
+                    <tr ng-repeat="food in vm.foods" id="{{food._id}}" ng-class="{lightred: food.is_hot}">
                         <td>
                             <input type="text" ng-model="food.name">
                         </td>
